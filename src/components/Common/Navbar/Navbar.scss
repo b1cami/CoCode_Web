@@ -2,7 +2,38 @@
 @import '../../../styles/Font_Scheme/Font_Scheme.scss';
 
 .Navbar {
-	width: 300px;
+	width: 150px;
 	height: 100vh;
 	background-color: $white;
+	overflow-y: auto;
+
+	&-ItemList {
+		height: 100vh;
+		display: flex;
+		display: -webkit-flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		list-style: none;
+
+		&-Item {
+			display: flex;
+			display: -webkit-flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			width: 100%;
+			height: calc(100vh / 6);
+			cursor: pointer;
+
+			&:hover {
+				background-color: $primary;
+				transition: all 0.3s ease-in;
+			}
+
+			&-Active {
+				background-color: $green;
+			}
+		}
+	}
 }

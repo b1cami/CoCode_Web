@@ -1,22 +1,93 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { FaSchool } from 'react-icons/fa';
+import { IoIosSend } from 'react-icons/io';
+import { MdPeople } from 'react-icons/md';
+import { GiKnifeFork } from 'react-icons/gi';
+import { BiLogOut } from 'react-icons/bi';
+import { withRouter } from 'next/router';
+import SecureLS from 'secure-ls';
+import { simpleAlert } from 'lib/SweetAlert';
 
 const style = require('./Navbar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface NavbarProps {}
+interface NavbarProps {
+	router?: any;
+}
 
-const Navbar = ({}: NavbarProps) => {
+const Navbar = ({ router }: NavbarProps) => {
+	const iconStyle: Object = {
+		fontSize: 20,
+	};
+
+	const onLogOut = useCallback(() => {
+		const ls = new SecureLS({ encodingType: 'aes' });
+		ls.clear();
+		localStorage.clear();
+		router.push('/');
+		simpleAlert('성공', '로그아웃 되었습니다.', 'success');
+	}, []);
+
 	return (
 		<div className={cx('Navbar')}>
-			<ul className={cx('Navbar-ItemList')}>
-				<li>급식 메뉴</li>
-				<li>급식 건의</li>
-				<li>커뮤니티</li>
-			</ul>
+			<div className={cx('Navbar-ItemList')}>
+				<div
+					className={cx('Navbar-ItemList-Item', {
+						'Navbar-ItemList-Item-Active': router.pathname === '/Meal',
+					})}
+					onClick={() => router.push('/Meal')}
+				>
+					<GiKnifeFork style={iconStyle} />
+					<div>오늘의 급식</div>
+				</div>
+
+				<div
+					className={cx('Navbar-ItemList-Item', {
+						'Navbar-ItemList-Item-Active': router.pathname === 'meal',
+					})}
+					onClick={() => router.push('/Meal')}
+				>
+					<IoIosSend style={iconStyle} />
+					<div>급식 건의</div>
+				</div>
+
+				<div
+					className={cx('Navbar-ItemList-Item', {
+						'Navbar-ItemList-Item-Active': router.pathname === '/Post',
+					})}
+					onClick={() => router.push('/Post')}
+				>
+					<MdPeople style={iconStyle} />
+					<div>커뮤니티</div>
+				</div>
+
+				<div
+					className={cx('Navbar-ItemList-Item', {
+						'Navbar-ItemList-Item-Active': router.pathname === 'meal',
+					})}
+				>
+					<FaSchool style={iconStyle} />
+					<div>학교 건의</div>
+				</div>
+
+				<div
+					className={cx('Navbar-ItemList-Item', {
+						'Navbar-ItemList-Item-Active': router.pathname === 'meal',
+					})}
+				>
+					<FaSchool style={iconStyle} />
+					<div>학교 건의</div>
+				</div>
+
+				<div className={cx('Navbar-ItemList-Item')} onClick={onLogOut}>
+					<BiLogOut style={iconStyle} />
+					<div>로그아웃</div>
+				</div>
+			</div>
 		</div>
 	);
 };
 
-export default Navbar;
+export default withRouter(Navbar);

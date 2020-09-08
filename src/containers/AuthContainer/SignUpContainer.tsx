@@ -40,7 +40,6 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 			}
 
 			const response: AxiosResponse = await handleSendEmail(request);
-			console.log(response);
 
 			setIsLoading(false);
 			switch (response.status) {
@@ -71,7 +70,6 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 			};
 
 			const response = await handleSignUp(request);
-			console.log(response);
 
 			setIsLoading(false);
 			switch (response.status) {
@@ -89,7 +87,6 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 					return;
 			}
 		} catch (error) {
-			console.log(error);
 			throw error;
 		}
 	}, [email, certifyCode, handleSignUp]);
