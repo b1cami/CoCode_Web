@@ -6,10 +6,9 @@ import { ISignInTypes } from 'interface/AuthTypes';
 import Loading from 'components/Common/Loading';
 import { simpleAlert } from 'lib/SweetAlert';
 import SecureLs from 'secure-ls';
-import SecureLS from 'secure-ls';
+import { MdSwapCalls } from 'react-icons/md';
 
 const SignInContainer = observer(() => {
-	const ls: SecureLS = new SecureLs({ encodingType: 'aes' });
 	const { store } = useStores();
 	const { handleSignIn } = store.AuthStore;
 
@@ -18,12 +17,18 @@ const SignInContainer = observer(() => {
 	const [password, setPassword] = useState<string>('');
 
 	const requestSignIn = useCallback(async () => {
+		const ls = new SecureLs({ encodingType: 'aes' });
 		try {
 			setIsLoading(true);
 			const request: ISignInTypes = {
 				email,
 				password,
 			};
+
+			if (email.trim() === '' || password.trim() === '') {
+				simpleAlert('잠시만요', '값을 모두 입력해주세요.', 'error');
+				return;
+			}
 
 			const response = await handleSignIn(request);
 			setIsLoading(false);
