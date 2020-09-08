@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import SignIn from '../SignIn';
-import SignUp from '../SignUp';
 import SignUpContainer from 'containers/AuthContainer/SignUpContainer';
 import SignInContainer from 'containers/AuthContainer/SignInContainer';
 

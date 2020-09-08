@@ -14,22 +14,39 @@ interface CommunityProps {
 	children?: ReactNode;
 }
 
+// const imgSrc = require('../../assets/icon/Logo.png');
+
 const Community = ({ postList, postRef, children }: CommunityProps) => {
 	const [isModal, setIsModal] = useState<boolean>(false);
+	// const [selectPost, setSelectPost] = useState<Object>({});
 
 	return (
 		<div className={cx('Community')}>
 			<div className={cx('Community-Title')}>커뮤니티 사이트</div>
 			<div className={cx('Community-List')} ref={postRef}>
 				{postList.map((post: IPostListTypes) => {
-					const { content, id, title, uploader } = post;
-					return (
-						<div key={id} className={cx('Community-List-Item')}>
-							<div>제목: {title}</div>
-							<div>{content}</div>
-							<div>작성자: {uploader}</div>
-						</div>
-					);
+					if (post) {
+						const { content, id, title, uploader } = post;
+						return (
+							<div key={id} className={cx('Community-List-Item')}>
+								<div className={cx('Community-List-Item-Top')}>
+									<img src="/images/PROFILE_DEFAULT.jpg" alt="asdf" />
+									<div>{uploader}</div>
+								</div>
+								<div className={cx('Community-List-Item-Title')}>
+									제목:{' '}
+									{String(title).length > 20
+										? String(title).substring(0, 20).concat('...')
+										: String(title)}
+								</div>
+								<div>
+									{String(content).length >= 100
+										? String(content).concat('...')
+										: String(content)}
+								</div>
+							</div>
+						);
+					}
 				})}
 			</div>
 

@@ -6,9 +6,10 @@ import { ISignInTypes } from 'interface/AuthTypes';
 import Loading from 'components/Common/Loading';
 import { simpleAlert } from 'lib/SweetAlert';
 import SecureLs from 'secure-ls';
-import { MdSwapCalls } from 'react-icons/md';
+import { useRouter, NextRouter } from 'next/router';
 
 const SignInContainer = observer(() => {
+	const router: NextRouter = useRouter();
 	const { store } = useStores();
 	const { handleSignIn } = store.AuthStore;
 
@@ -37,6 +38,7 @@ const SignInContainer = observer(() => {
 					ls.set('cocode-token', response.token);
 					ls.set('userInfo', response.user);
 					simpleAlert('성공', '로그인에 성공하였습니다.', 'success');
+					router.push('/Meal');
 					return;
 
 				case 400:

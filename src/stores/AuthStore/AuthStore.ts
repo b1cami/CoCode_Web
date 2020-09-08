@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { action } from 'mobx';
 import { autobind } from 'core-decorators';
 import AuthRepository from './AuthRepository';
 import {
