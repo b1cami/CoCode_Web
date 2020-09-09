@@ -1,0 +1,63 @@
+@import '../../../styles/Font_Scheme/Font_Scheme.scss';
+@import '../../../styles/Palette/Palette.scss';
+
+.SignIn {
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+
+	&-Title {
+		font-size: $font_30;
+		color: $skyBlue;
+		margin-bottom: 2rem;
+	}
+
+	&-Input {
+		display: flex;
+		display: -webkit-flex;
+		flex-direction: column;
+		width: 100%;
+
+		&-Item {
+			margin-bottom: 2rem;
+
+			& > p {
+				color: $skyBlue;
+				font-size: $font_22;
+				margin-bottom: 5px;
+			}
+
+			& > input {
+				border: none;
+				border-bottom: 3px solid $gray;
+				width: 100%;
+				padding: 10px 5px;
+				font-size: $font_20;
+
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+	}
+
+	&-ButtonZone {
+		display: flex;
+		display: -webkit-flex;
+		justify-content: center;
+
+		& > button {
+			border: none;
+			margin: auto;
+			outline: none;
+			width: 70%;
+			padding: 15px 0;
+			background-color: $primary;
+			font-size: $font_20;
+			border-radius: 10px;
+			cursor: pointer;
+		}
+	}
+}
