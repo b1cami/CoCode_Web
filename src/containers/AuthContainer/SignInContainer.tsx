@@ -19,11 +19,18 @@ const SignInContainer = observer(() => {
 
 	const requestSignIn = useCallback(async () => {
 		const ls = new SecureLs({ encodingType: 'aes' });
+		const regExp: RegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
 		try {
 			const request: ISignInTypes = {
 				email,
 				password,
 			};
+
+			if (!regExp.test(email)) {
+				simpleAlert('잠시만요', '이메일이 올바르지 않습니다.', 'error');
+				return;
+			}
 
 			if (email.trim() === '' || password.trim() === '') {
 				simpleAlert('잠시만요', '값을 모두 입력해주세요.', 'error');

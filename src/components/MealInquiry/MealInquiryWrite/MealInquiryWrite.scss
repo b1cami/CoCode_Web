@@ -9,11 +9,8 @@
 	top: 50%;
 	left: 50%;
 	padding: 2rem;
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: auto;
 	transform: translate(-50%, -50%);
-	z-index: 3;
-	word-break: break-all;
 
 	&-Wrapper {
 		position: fixed;
@@ -21,7 +18,6 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		z-index: 1;
 		background-color: rgba(0, 0, 0, 0.4);
 	}
 
@@ -31,70 +27,69 @@
 		justify-content: space-between;
 		font-size: $font_25;
 		padding-bottom: 5px;
-		margin-bottom: 10px;
 		border-bottom: 2px solid $lighterGray;
 	}
 
-	&-Contents {
-		&-Top {
-			display: flex;
-			display: -webkit-flex;
-			margin-bottom: 1rem;
-
-			&-Time {
-				border: none;
-				border-right: 1px solid $gray;
-				padding-right: 5px;
-				margin-right: 5px;
-				color: $boldBlue;
-			}
-		}
-
-		border: none;
-		border-bottom: 2px solid $lighterGray;
-		padding-bottom: 5px;
-	}
-
-	&-Comments {
+	&-Form {
 		width: 100%;
-		height: 30vh;
-		overflow-y: auto;
-		overflow-x: hidden;
-		margin-top: 3rem;
 
-		&-Top {
-			display: flex;
-			display: -webkit-flex;
-			justify-content: space-between;
-			margin-bottom: 1rem;
+		&-Name {
+			width: 80%;
 
-			& > div {
-				display: flex;
-				display: -webkit-flex;
+			&-Title {
+				background-color: $indigo;
+				color: $white;
+				padding: 5px;
+				text-align: center;
 			}
-		}
 
-		&-Title {
-			margin-bottom: 10px;
-		}
-
-		& > h4 {
-			padding-left: 5px;
-		}
-
-		&-Input {
-			display: block;
-			width: 100%;
-			outline: none;
-			padding: 5px 10px;
-			font-size: $font_20;
-			margin: 10px 0;
-			border: none;
-			border-bottom: 2px solid $gray;
+			&-TitleInput {
+				width: 100%;
+				border: none;
+				outline: none;
+				border-bottom: 2px solid $lighterGray;
+				padding: 10px;
+			}
 		}
 
 		&-Contents {
-			word-break: break-all;
+			width: 80%;
+
+			&-Title {
+				background-color: $indigo;
+				color: $white;
+				padding: 5px;
+				text-align: center;
+			}
+
+			&-TitleInput {
+				width: 100%;
+				border: none;
+				outline: none;
+				border-bottom: 2px solid $lighterGray;
+				padding: 10px;
+				padding-bottom: 50%;
+				resize: none;
+			}
+		}
+	}
+
+	&-Button {
+		height: 100px;
+		display: flex;
+		display: -webkit-flex;
+		justify-content: center;
+		align-items: center;
+
+		& > button {
+			width: 150px;
+			height: 50px;
+			border: none;
+			outline: none;
+			color: $white;
+			font-size: $font_22;
+			background-color: $blue;
+			cursor: pointer;
 		}
 	}
 }

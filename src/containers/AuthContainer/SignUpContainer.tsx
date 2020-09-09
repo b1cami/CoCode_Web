@@ -26,19 +26,26 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	const requestSendEmail = async () => {
+		const regExp: RegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
 		try {
-			setIsLoading(true);
 			const request: ISendEmailTypes = {
 				email,
 				password,
 				name,
 			};
 
+			if (!regExp.test(email)) {
+				simpleAlert('잠시만요', '이메일이 올바르지 않습니다.', 'error');
+				return;
+			}
+
 			if (email.trim() === '' || password.trim() === '' || name.trim() === '') {
 				Swal.fire('잠시만요', '값을 모두 입력해주세요', 'error');
 				return;
 			}
 
+			setIsLoading(true);
 			const response: AxiosResponse = await handleSendEmail(request);
 
 			setIsLoading(false);
@@ -50,6 +57,14 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 
 				case 400:
 					simpleAlert('잠시만요', '이미 존재하는 유저입니다.', 'warning');
+					return;
+
+				case 401:
+					simpleAlert(
+						'잠시만요',
+						'비밀번호는 8 이상 25자 이하입니다.',
+						'error'
+					);
 					return;
 
 				case 500:

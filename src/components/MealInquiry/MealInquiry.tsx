@@ -94,7 +94,7 @@ const MealInquiry = ({
 					})
 				) : (
 					<div className={cx('MealInquiry-Nolength')}>
-						커뮤니티에 등록된 글이 없습니다!
+						급식 건의에 등록된 글이 없습니다!
 					</div>
 				)}
 			</div>

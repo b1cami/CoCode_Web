@@ -49,6 +49,7 @@ const CommunityContainer = observer(({}) => {
 				switch (response.status) {
 					case 200:
 						simpleAlert('성공', '글 삭제를 성공하였습니다.', 'success');
+						setSelectPost({});
 						return;
 				}
 			} catch (error) {
@@ -89,10 +90,11 @@ const CommunityContainer = observer(({}) => {
 
 				const request: any = {
 					comment,
-					lunchId: selectPost.id,
+					postId: selectPost.id,
 				};
 
 				const response = await handleCommentWrite(request);
+				console.log(response);
 				if (response.status === 200) {
 					setComment('');
 					requestCommentList(selectPost.id);
