@@ -25,7 +25,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 
-	const requestSendEmail = useCallback(async () => {
+	const requestSendEmail = async () => {
 		try {
 			setIsLoading(true);
 			const request: ISendEmailTypes = {
@@ -59,16 +59,21 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 		} catch (error) {
 			throw error;
 		}
-	}, [email, password, name, handleSendEmail]);
+	};
 
 	const requestSignUp = useCallback(async () => {
 		try {
-			setIsLoading(true);
 			const request: ISignUpTypes = {
 				email,
 				certifyCode,
 			};
 
+			if (certifyCode.trim() === '') {
+				simpleAlert('잠시만요', '인증 코드를 입력해주세요.', 'error');
+				return;
+			}
+
+			setIsLoading(true);
 			const response = await handleSignUp(request);
 
 			setIsLoading(false);

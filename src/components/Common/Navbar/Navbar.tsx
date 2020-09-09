@@ -19,7 +19,7 @@ interface NavbarProps {
 
 const Navbar = ({ router }: NavbarProps) => {
 	const iconStyle: Object = {
-		fontSize: 20,
+		fontSize: 25,
 	};
 
 	const onLogOut = useCallback(() => {
@@ -45,9 +45,9 @@ const Navbar = ({ router }: NavbarProps) => {
 
 				<div
 					className={cx('Navbar-ItemList-Item', {
-						'Navbar-ItemList-Item-Active': router.pathname === 'meal',
+						'Navbar-ItemList-Item-Active': router.pathname === '/MealInquiry',
 					})}
-					onClick={() => router.push('/Meal')}
+					onClick={() => router.push('/MealInquiry')}
 				>
 					<IoIosSend style={iconStyle} />
 					<div>급식 건의</div>
@@ -61,24 +61,6 @@ const Navbar = ({ router }: NavbarProps) => {
 				>
 					<MdPeople style={iconStyle} />
 					<div>커뮤니티</div>
-				</div>
-
-				<div
-					className={cx('Navbar-ItemList-Item', {
-						'Navbar-ItemList-Item-Active': router.pathname === 'meal',
-					})}
-				>
-					<FaSchool style={iconStyle} />
-					<div>학교 건의</div>
-				</div>
-
-				<div
-					className={cx('Navbar-ItemList-Item', {
-						'Navbar-ItemList-Item-Active': router.pathname === 'meal',
-					})}
-				>
-					<FaSchool style={iconStyle} />
-					<div>학교 건의</div>
 				</div>
 
 				<div className={cx('Navbar-ItemList-Item')} onClick={onLogOut}>

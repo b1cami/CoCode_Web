@@ -1,7 +1,11 @@
 import { observable, action } from 'mobx';
 import { autobind } from 'core-decorators';
 import CommunityRepository from './CommunityRepository';
-import { IPostListTypes, IPostWriteTypes } from 'interface/PostTypes';
+import {
+	IPostListTypes,
+	IPostWriteTypes,
+	IPostCommentTypes,
+} from 'interface/PostTypes';
 
 @autobind
 class CommunityStore {
@@ -34,6 +38,34 @@ class CommunityStore {
 		} else {
 			this.pageCount = page;
 		}
+	};
+
+	@action
+	handlePostDelete = async (idx: number) => {
+		const response = await CommunityRepository.handlePostDelete(idx);
+
+		this.postList = this.postList.filter(
+			(post: IPostListTypes) => post.id !== idx
+		);
+		return response;
+	};
+
+	@action
+	handleCommentList = async (id: number) => {
+		const response = await CommunityRepository.handleCommentList(id);
+		return response;
+	};
+
+	@action
+	handleCommentWrite = async (request: IPostCommentTypes) => {
+		const response = await CommunityRepository.handleCommentWrite(request);
+		return response;
+	};
+
+	@action
+	handleCommentDelete = async (id: number) => {
+		const response = await CommunityRepository.handleCommentDelete(id);
+		return response;
 	};
 }
 

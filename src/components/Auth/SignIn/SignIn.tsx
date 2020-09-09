@@ -35,11 +35,15 @@ const SignIn = ({
 }: SignInProps) => {
 	const [checked, setChecked] = useState<boolean>(false);
 
-	const onKeyEnter = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
-		if (e.keyCode === 13) {
-			requestSignIn();
-		}
-	}, []);
+	const onKeyEnter = useCallback(
+		(e: KeyboardEvent<HTMLInputElement>) => {
+			if (e.keyCode === 13) {
+				e.preventDefault();
+				requestSignIn();
+			}
+		},
+		[requestSignIn]
+	);
 
 	return (
 		<div className={cx('SignIn')}>
@@ -51,6 +55,7 @@ const SignIn = ({
 						type="email"
 						required
 						value={email}
+						autoComplete="false"
 						onChange={(e: ChangeEvent<HTMLInputElement>) =>
 							setEmail(e.target.value)
 						}
@@ -63,6 +68,7 @@ const SignIn = ({
 					<input
 						type="password"
 						required
+						autoComplete="false"
 						value={password}
 						onChange={(e: ChangeEvent<HTMLInputElement>) =>
 							setPassword(e.target.value)
@@ -71,10 +77,6 @@ const SignIn = ({
 					/>
 				</div>
 			</div>
-
-			<CheckBox checked={checked} setChecked={setChecked}>
-				로그인 유지
-			</CheckBox>
 
 			<div className={cx('SignIn-ButtonZone')}>
 				<button onClick={requestSignIn}>Sign In</button>
