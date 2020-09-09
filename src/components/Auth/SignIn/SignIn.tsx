@@ -55,7 +55,6 @@ const SignIn = ({
 						type="email"
 						required
 						value={email}
-						autoComplete="false"
 						onChange={(e: ChangeEvent<HTMLInputElement>) =>
 							setEmail(e.target.value)
 						}
@@ -68,7 +67,6 @@ const SignIn = ({
 					<input
 						type="password"
 						required
-						autoComplete="false"
 						value={password}
 						onChange={(e: ChangeEvent<HTMLInputElement>) =>
 							setPassword(e.target.value)
