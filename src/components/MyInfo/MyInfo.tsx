@@ -27,6 +27,11 @@ const MyInfo = ({ myInfo, setIsModal }: MyInfoProps) => {
 				</div>
 
 				<div className={cx('MyInfo-Contents')}>
+					<img
+						src="/images/PROFILE_DEFAULT.jpg"
+						alt="default profile"
+						style={{ width: 100, height: 100 }}
+					/>
 					<div>이름: {name}</div>
 					<div>이메일: {email}</div>
 				</div>
