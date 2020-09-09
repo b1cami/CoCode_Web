@@ -10,6 +10,13 @@
 		font-size: $font_30;
 	}
 
+	&-Nolength {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
 	&-List {
 		display: flex;
 		display: -webkit-flex;
@@ -20,12 +27,20 @@
 		overflow-y: auto;
 
 		&-Item {
+			position: relative;
 			min-width: 600px;
 			max-width: 600px;
 			background-color: $lighterGray;
 			margin: 1rem;
 			padding: 1rem;
 			cursor: pointer;
+
+			&-Menu {
+				position: absolute;
+				right: 1rem;
+				font-size: $font_20;
+				cursor: pointer;
+			}
 
 			&-Title {
 				font-size: $font_25;

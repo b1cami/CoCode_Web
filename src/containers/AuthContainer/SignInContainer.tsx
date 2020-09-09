@@ -20,7 +20,6 @@ const SignInContainer = observer(() => {
 	const requestSignIn = useCallback(async () => {
 		const ls = new SecureLs({ encodingType: 'aes' });
 		try {
-			setIsLoading(true);
 			const request: ISignInTypes = {
 				email,
 				password,
@@ -31,6 +30,7 @@ const SignInContainer = observer(() => {
 				return;
 			}
 
+			setIsLoading(true);
 			const response = await handleSignIn(request);
 			setIsLoading(false);
 			switch (response.status) {
@@ -48,11 +48,19 @@ const SignInContainer = observer(() => {
 				case 401:
 					simpleAlert('잠시만요', '비밀번호가 틀립니다.', 'error');
 					return;
+
+				case 500:
+					simpleAlert('오류', '서버 오류입니다.', 'error');
+					return;
+
+				default:
+					simpleAlert('오류', '에러가 발생하였습니다.', 'error');
+					return;
 			}
 		} catch (error) {
 			throw error;
 		}
-	}, [email, password, handleSignIn]);
+	}, [email, password, handleSignIn, router]);
 
 	return (
 		<SignIn
