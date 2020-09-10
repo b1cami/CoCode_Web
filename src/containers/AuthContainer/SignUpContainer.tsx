@@ -62,7 +62,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 				case 401:
 					simpleAlert(
 						'잠시만요',
-						'비밀번호는 8 이상 25자 이하입니다.',
+						'비밀번호는 8 이상 25자 이하 영어와 숫자입니다..',
 						'error'
 					);
 					return;
