@@ -40,7 +40,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 				return;
 			}
 
-			if (email.trim() === '' || password.trim() === '' || name.trim() === '') {
+			if (!email.trim() || !password.trim() || !name.trim()) {
 				Swal.fire('잠시만요', '값을 모두 입력해주세요', 'error');
 				return;
 			}

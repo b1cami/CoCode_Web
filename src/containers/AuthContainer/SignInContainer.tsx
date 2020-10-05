@@ -32,7 +32,7 @@ const SignInContainer = observer(() => {
 				return;
 			}
 
-			if (email.trim() === '' || password.trim() === '') {
+			if (!email.trim() || !password.trim()) {
 				simpleAlert('잠시만요', '값을 모두 입력해주세요.', 'error');
 				return;
 			}
