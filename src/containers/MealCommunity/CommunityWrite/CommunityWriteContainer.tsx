@@ -22,7 +22,7 @@ const CommunityWriteContainer = observer(
 				description: content,
 			};
 
-			if (title.trim() === '' || content.trim() === '') {
+			if (!title.trim() || !content.trim()) {
 				simpleAlert('잠시만요', '값을 모두 입력해주세요.', 'error');
 				return;
 			}
